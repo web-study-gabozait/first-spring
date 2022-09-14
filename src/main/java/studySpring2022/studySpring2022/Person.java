@@ -2,7 +2,7 @@ package studySpring2022.studySpring2022;
 
 public class Person {
 
-    private String name = "Mr.smith";
+    private String name;
 
     public String getName() {
         return this.name;
