@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>시계</title>
+</head>
+<body>
+  <h1>스프링 공부 - 시계</h1>
+  <p th:text="${now}"></p>
+<p>
+    이름 : <span th:text="${person.name}"></span> <br>
+    나이 : <span th:text="${person.name}"></span>세
+</p>
+</body>
+<script th:src="@{/js/common.js}"></script>
+</html>
