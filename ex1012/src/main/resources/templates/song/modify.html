@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>song</title>
+    <link href="/css/song.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="input">
+    <form action="../modify-save.do" method="post">
+        <input type="hidden" name="idx" th:value="${song.idx}">
+        <div>
+            <label>제목</label>
+            <input type="text" name="title" th:value="${song.title}"/>
+        </div>
+
+        <div>
+            <label>가수</label>
+            <input type="text" name="singer" th:value="${song.singer}"/>
+        </div>
+
+        <div>
+            <label>작곡</label>
+            <input type="text" name="composer" th:value="${song.composer}"/>
+        </div>
+
+        <div>
+            <label>발표년도</label>
+            <input type="text" name="year" th:value="${song.year}"/>
+        </div>
+
+        <div>
+            <label></label>
+            <button>등록</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

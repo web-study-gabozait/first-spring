@@ -1,0 +1,35 @@
+body {
+    font-size: 1.2rem;
+    color : #444;
+}
+
+.input {
+    margin: 20px;
+    padding: 20px;
+    border : 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input > div {
+    margin : 10px;
+}
+
+.input label {
+    display: inline-block;
+    width : 8rem;
+    text-align: center;
+    margin-right: 3rem;
+}
+
+.list {
+    border-collapse: collapse;
+}
+
+.list td, th {
+    border :1px solid gray;
+    padding : 5px;
+}
