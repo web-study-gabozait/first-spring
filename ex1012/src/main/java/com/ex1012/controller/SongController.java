@@ -28,7 +28,7 @@ public class SongController {
 
     @PostMapping("/add-save.do")
     public String addSave(
-                @RequestParam("title") String title,
+            @RequestParam("title") String title,
                 @RequestParam("singer") String singer,
                 @RequestParam("composer") String composer,
                 @RequestParam("year") int year

@@ -10,8 +10,19 @@ public class SongEntity {
     private Long idx;
     @Column(length = 1000)
     private String title;
-    private String singer;
+
+    @ManyToOne(targetEntity = ArtistEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist_idx")
+    private ArtistEntity aritist;
     private String composer;
+
+    public ArtistEntity getArtist() {
+        return aritist;
+    }
+
+    public void setArtist(ArtistEntity aritist) {
+        this.aritist = aritist;
+    }
 
     @Column(name="published_year")
     private int year;
@@ -24,14 +35,6 @@ public class SongEntity {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getSinger() {
-        return singer;
-    }
-
-    public void setSinger(String singer) {
-        this.singer = singer;
     }
 
     public String getComposer() {
@@ -58,9 +61,8 @@ public class SongEntity {
         this.idx = idx;
     }
 
-    public SongEntity( String title, String singer, String composer, int year) {
+    public SongEntity( String title, String composer, int year) {
         this.title = title;
-        this.singer = singer;
         this.composer = composer;
         this.year = year;
     }

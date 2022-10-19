@@ -2,9 +2,8 @@ package com.ex1012.domain;
 
 public class Song {
 
-    public Song(String title, String singer, String composer, int year) {
+    public Song(String title, String composer, int year) {
         this.title = title;
-        this.singer = singer;
         this.composer = composer;
         this.year = year;
     }
@@ -26,6 +25,8 @@ public class Song {
 
     private int year;
 
+    private  Artist artist;
+
     public String getTitle() {
         return title;
     }
@@ -34,13 +35,6 @@ public class Song {
         this.title = title;
     }
 
-    public String getSinger() {
-        return singer;
-    }
-
-    public void setSinger(String singer) {
-        this.singer = singer;
-    }
 
     public String getComposer() {
         return composer;
@@ -56,5 +50,13 @@ public class Song {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }
