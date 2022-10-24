@@ -4,10 +4,7 @@ import com.ldh.board.demo.domain.Board;
 import com.ldh.board.demo.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.websocket.server.PathParam;
@@ -51,7 +48,7 @@ public class BoardController {
     }
 
     @GetMapping("/view/{idx}")
-    public ModelAndView viewPage(@PathParam("idx") Long idx) {
+    public ModelAndView viewPage(@PathVariable("idx") Long idx) {
         ModelAndView mv = new ModelAndView("/board/view");
         Board board = boardService.getBoard(idx);
         mv.addObject("board", board);
@@ -60,7 +57,7 @@ public class BoardController {
     }
 
     @GetMapping("/update/{idx}")
-    public ModelAndView updatePage(@PathParam("idx") Long idx) {
+    public ModelAndView updatePage(@PathVariable("idx") Long idx) {
         ModelAndView mv= new ModelAndView("/board/update");
         Board board = boardService.getBoard(idx);
         mv.addObject("board", board);
@@ -84,7 +81,7 @@ public class BoardController {
 
     @RequestMapping("/delete.do/{idx}")
     public String deleteBoard(
-            @PathParam("idx") Long idx
+            @PathVariable("idx") Long idx
     ) {
         boardService.deleteBoard(idx);
         return "redirect:../list";

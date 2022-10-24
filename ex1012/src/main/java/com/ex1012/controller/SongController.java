@@ -56,7 +56,6 @@ public class SongController {
             @PathVariable("idx") Long idx
     ) {
         ModelAndView mv = new ModelAndView("song/view");
-
         Song song = songService.read(idx);
         mv.addObject("song", song);
 

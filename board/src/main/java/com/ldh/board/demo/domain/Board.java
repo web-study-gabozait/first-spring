@@ -14,12 +14,12 @@ public class Board {
         this.title = title;
         this.content = content;
         this.author = author;
-   }
+    }
 
     private  Long boardIdx;
     private String title;
     private  String content;
     private String author;
     private Date created_at;
-    private  int watch_count;
+    private int watch_count;
 }
