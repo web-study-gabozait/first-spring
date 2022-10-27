@@ -30,7 +30,6 @@ public class BoardServiceImpl implements BoardService {
             BoardEntity entity = optional.get();
             Board board = new Board(entity.getTitle(), entity.getContent(), entity.getAuthor());
             board.setBoardIdx(entity.getBoardIdx());
-            this.increaseWatchCount(board.getBoardIdx());
 
             return board;
         }else {
@@ -41,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void increaseWatchCount(Long idx) {
         BoardEntity boardEntity = boardRepository.findById(idx).orElseThrow();
-        boardEntity.increaseWatchCount();
+        boardEntity.increaseWatchCount(boardEntity.getWatch_count() + 1);
         boardRepository.save(boardEntity);
     }
 

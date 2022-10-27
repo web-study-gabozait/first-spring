@@ -34,7 +34,7 @@ public class SongController {
                 @RequestParam("year") int year
     ) {
 
-        Song song = new Song(title, singer, composer, year);
+        Song song = new Song(title, singer, year);
 
         songService.addSong(song);
 
@@ -42,14 +42,28 @@ public class SongController {
     }
 
     @GetMapping("/list")
-    public ModelAndView list() {
+    public ModelAndView list(
+            @RequestParam(value = "type", defaultValue = "제목") String type,
+            @RequestParam(value = "query", required = false) String query) {
         ModelAndView mv = new ModelAndView("song/list");
 
-        List<Song> list = songService.getList();
+        List<Song> list = null;
+        if (query != null && query.length() > 0) {
+            if (type.equals("발표년도")) {
+                int year = Integer.parseInt(query);
+                list = songService.getList(year);
+            } else {
+                list = songService.getList(query);
+            }
+        } else {
+            list = songService.getList();
+        }
+
         mv.addObject("list", list);
 
         return mv;
     }
+
 
     @GetMapping("/view/{idx}")
     public ModelAndView view(
@@ -58,6 +72,18 @@ public class SongController {
         ModelAndView mv = new ModelAndView("song/view");
         Song song = songService.read(idx);
         mv.addObject("song", song);
+
+        return mv;
+    }
+
+    @RequestMapping("/search")
+    public ModelAndView searchSong(
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "year", required = false) int year
+    ) {
+        List<Song> songList = songService.search(title, year);
+        ModelAndView mv = new ModelAndView("song/list");
+        mv.addObject("list", songList);
 
         return mv;
     }
@@ -82,9 +108,9 @@ public class SongController {
             @RequestParam("composer") String composer,
             @RequestParam("year") int year
     ) {
-        Song song = new Song(title, singer, composer, year);
+        Song song = new Song(title, singer, year);
 
-        songService.modify(idx, song);
+        songService.update(song);
 
         return "redirect:view/" + idx;
     }

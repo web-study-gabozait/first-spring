@@ -20,6 +20,9 @@ public interface SongService {
      */
     public List<Song> getList();
 
+    public List<Song> getList(String title);
+
+    public List<Song> getList(int year);
     /**
      * 등록된 노래 목록중 한개를 가져온다.
      *
@@ -31,13 +34,14 @@ public interface SongService {
     /**
      * 등록된 노래 목록중 한개를 수정한다.
      *
-     * @param idx
+     *
      * @param song
      *L
      * @return 수정된 노래
      */
-    public void modify(Long idx, Song song);
-
+    public void update(Song song);
     public void delete(Long idx);
+
+    List<Song> search(String title, int year);
 
 }

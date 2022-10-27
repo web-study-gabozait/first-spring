@@ -11,7 +11,6 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/board")
 public class BoardController {
 
     private BoardService boardService;
@@ -51,8 +50,8 @@ public class BoardController {
     public ModelAndView viewPage(@PathVariable("idx") Long idx) {
         ModelAndView mv = new ModelAndView("/board/view");
         Board board = boardService.getBoard(idx);
+        boardService.increaseWatchCount(idx);
         mv.addObject("board", board);
-
         return mv;
     }
 

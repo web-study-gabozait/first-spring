@@ -2,60 +2,59 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>song</title>
-    <link href="/css/song.css" rel="stylesheet"/>
+    <title>Song</title>
+
+    <link href="/css/song.css?1" rel="stylesheet">
+
     <script>
 
-        const deleteSong = function (){
-            if(confirm("정말 삭제하시겠습니까?")) {
-            const idx = document.querySelector("[name='idx']").value;
-            location.href = "../delete.do/" + idx;
+        const deleteSong = function() {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                const idx = document.querySelector("[name='idx']").value;
+                location.href = "../delete.do/" + idx;
             }
-        }
+        };
 
     </script>
 </head>
 <body>
-<div>
-        <div>
-            <label>제목</label>
-            <span th:text="${song.title}"></span>
-        </div>
+<h1>노래 정보</h1>
 
-        <div>
-            <label>가수</label>
-            <span th:text="${song.artist.name}"></span>
+<div class="input">
+    <input type="hidden" name="idx" th:value="${song.idx}">
+    <div>
+        <label>제목</label>
+        <span th:text="${song.title}"></span>
+    </div>
 
-        </div>
-        <div>
-            <label>작곡</label>
-            <span th:text="${song.composer}"></span>
-        </div>
+    <div>
+        <label>가수</label>
+        <span th:text="${song.artist.name}" ></span>
+    </div>
 
-        <div>
-            <label>발표년도</label>
-            <span th:text="${song.year}"></span>
-        </div>
+    <div>
+        <label>가수 데뷔 년도</label>
+        <span th:text="${song.artist.debutYear}" ></span>
+    </div>
 
-        <div>
-            <label></label>
-            <a href="../list">
-                <button>
-                목록
-                </button>
-            </a>
-            <a th:href="@{../modify/{id}(id = ${song.idx})}">
-                <button>
-                    수정
-                </button>
-            </a>
-            <a href="javascript:deleteSong();">
-                <button>
-                    삭제
-                </button>
-            </a>
-        </div>
+    <div>
+        <label>작곡</label>
+        <span th:text="${song.composer}"></span>
+    </div>
+
+    <div>
+        <label>발표년도</label>
+        <span th:text="${song.year}"></span>
+    </div>
+
+    <div>
+        <label></label>
+        <a href="../list"><button>목록</button></a>
+        <a th:href="@{/song/update/{id} (id = ${song.idx})}"><button>수정</button></a>
+        <a href="javascript:deleteSong();"><button>삭제</button></a>
+    </div>
 
 </div>
+
 </body>
 </html>

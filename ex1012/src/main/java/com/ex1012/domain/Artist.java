@@ -3,6 +3,7 @@ package com.ex1012.domain;
 public class Artist {
 
     private Long artistIdx;
+
     private String name;
 
     private int debutYear;
@@ -29,5 +30,4 @@ public class Artist {
 
     public void setDebutYear(int debutYear) {
         this.debutYear = debutYear;
-    }
-}
+    }}

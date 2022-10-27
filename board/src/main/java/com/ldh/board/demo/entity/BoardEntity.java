@@ -35,8 +35,8 @@ public class BoardEntity {
         this.author = author;
     }
 
-    public void increaseWatchCount () {
-        this.watch_count += 1;
+    public void increaseWatchCount (int watch_count) {
+        this.watch_count = watch_count;
     }
 
 }

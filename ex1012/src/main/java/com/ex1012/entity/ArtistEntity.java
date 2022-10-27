@@ -2,24 +2,23 @@ package com.ex1012.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="artist")
-public class ArtistEntity {
 
+@Entity
+@Table(name = "artist")
+public class ArtistEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int artistIdx;
+    private Long artistIdx;
 
     private String name;
 
     private int debutYear;
 
-
-    public int getArtistIdx() {
+    public Long getArtistIdx() {
         return artistIdx;
     }
 
-    public void setArtistIdx(int artistIdx) {
+    public void setArtistIdx(Long artistIdx) {
         this.artistIdx = artistIdx;
     }
 

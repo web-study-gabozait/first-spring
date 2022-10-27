@@ -1,40 +1,44 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>song</title>
-    <link href="/css/song.css" rel="stylesheet"/>
+    <title>Song</title>
+
+    <link href="/css/song.css?1" rel="stylesheet">
+
 </head>
 <body>
 <h1>노래 등록</h1>
+
 <div class="input">
     <form action="add-save.do" method="post">
-
         <div>
             <label>제목</label>
-            <input type="text" name="title" value=""/>
+            <input type="text" name="title">
         </div>
 
         <div>
             <label>가수</label>
-            <input type="text" name="singer" />
+            <input type="text" name="singer">
         </div>
 
         <div>
             <label>작곡</label>
-            <input type="text" name="composer" />
+            <input type="text" name="composer">
         </div>
 
         <div>
             <label>발표년도</label>
-            <input type="text" name="year" />
+            <input type="text" name="year">
         </div>
 
         <div>
             <label></label>
             <button>등록</button>
         </div>
+
     </form>
 </div>
+
 </body>
 </html>
