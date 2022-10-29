@@ -3,21 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            margin : 0px;
+        }
+
+        .writeContainer {
+            width : 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .writeWrap {
+            width: 490px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 40px;
+            box-sizing: border-box;
+            row-gap: 20px;
+        }
+
+        .writeTextInput {
+            width : 100%;
+            height: 64px;
+            border-radius: 5px;
+            border: 0px;
+            outline: none;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            font-size: 20px;
+            padding: 0px 20px;
+            box-sizing: border-box;
+        }
+
+        .writeTextInput:focus{
+            border : 2px solid black;
+        }
+
+        .writeTextarea {
+            width : 100%;
+            height: 400px;
+            font-size: 20px;
+            color : black;
+            padding: 20px;
+            box-sizing: border-box;
+            outline: none;
+            resize: none;
+            border: 0px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        .writeTextarea:focus {
+            border : 2px solid black;
+        }
+
+        .writeButton {
+            width : 105px;
+            min-height: 48px;
+            border-radius: 5px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            font-size: 20px;
+            border: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <form action="write.do" method="post">
-        <div>
-            <input name="title">
-        </div>
-        <div>
-            <input name="content">
-        </div>
-        <div>
-            <input name="author">
-        </div>
-        <div>
-            <button>등록</button>
-        </div>
+<div class="writeContainer">
+    <form class="writeWrap" action="write.do" method="post">
+            <input placeholder="제목을 입력해주세요" type="text" maxlength="100" name="title" class="writeTextInput" required>
+            <textarea placeholder="내용을 입력해주세요" maxlength="1000" name="content" class="writeTextarea" required></textarea>
+            <input placeholder="작성자를 입력해주세요" type="text" maxlength="50" name="author" class="writeTextInput" required>
+            <button class="writeButton">등록</button>
     </form>
+</div>
 </body>
 </html>

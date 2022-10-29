@@ -30,6 +30,7 @@ public class BoardServiceImpl implements BoardService {
             BoardEntity entity = optional.get();
             Board board = new Board(entity.getTitle(), entity.getContent(), entity.getAuthor());
             board.setBoardIdx(entity.getBoardIdx());
+            board.setCreatedAt(entity.getCreatedAt());
 
             return board;
         }else {
@@ -40,18 +41,20 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void increaseWatchCount(Long idx) {
         BoardEntity boardEntity = boardRepository.findById(idx).orElseThrow();
-        boardEntity.increaseWatchCount(boardEntity.getWatch_count() + 1);
+        boardEntity.increaseWatchCount(boardEntity.getWatchCount() + 1);
         boardRepository.save(boardEntity);
     }
 
     @Override
     public List<Board> getBoards() {
 
-        List<BoardEntity> boardList = boardRepository.findAll();
+        List<BoardEntity> boardList = boardRepository.findAllByOrderByCreatedAtDesc();
         List<Board> handleBoardList = new ArrayList<>();
         for(BoardEntity board : boardList) {
             Board handleBoard = new Board(board.getTitle(), board.getContent(), board.getAuthor());
             handleBoard.setBoardIdx(board.getBoardIdx());
+            handleBoard.setWatchCount(board.getWatchCount());
+            handleBoard.setCreatedAt(board.getCreatedAt());
 
             handleBoardList.add(handleBoard);
         }
@@ -67,8 +70,8 @@ public class BoardServiceImpl implements BoardService {
                 board.getContent(),
                 board.getAuthor());
 
-        boardEntity.setCreated_at(new Date());
-        boardEntity.setWatch_count(0);
+        boardEntity.setCreatedAt(new Date());
+        boardEntity.setWatchCount(0);
         boardRepository.save(boardEntity);
 
         return board;

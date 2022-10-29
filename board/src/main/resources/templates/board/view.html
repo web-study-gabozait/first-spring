@@ -13,49 +13,135 @@
         }
 
     </script>
+    <style>
+        body {
+            margin : 0px;
+        }
+
+        .viewContainer {
+            width : 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .viewWrap {
+            width: 490px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 40px;
+            box-sizing: border-box;
+        }
+
+        .viewTitle {
+            width : 100%;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: start;
+            margin-bottom: 20px;
+            line-height: 40px;
+            word-break: break-all;
+        }
+
+        .viewAuthor {
+            width : 100%;
+            font-size: 20px;
+            color : #bdbdbd;
+            text-align: end;
+            margin-bottom: 13px;
+        }
+
+        .viewContent {
+            width : 100%;
+            word-break: break-all;
+            font-size: 20px;
+            color : black;
+            margin-bottom: 20px;
+        }
+
+        .viewCreatedAt {
+            width : 100%;
+            color : #bdbdbd;
+            font-size: 20px;
+            text-align: end;
+            margin-bottom: 5px;
+        }
+
+        .viewWatchCount {
+            width : 100%;
+            color : #bdbdbd;
+            font-size: 20px;
+            text-align: end;
+            margin-bottom: 20px;
+        }
+
+        .viewButtonWrap {
+            width : 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .viewButton {
+            width : 105px;
+            min-height: 48px;
+            border-radius: 5px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            font-size: 20px;
+            border: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .viewButtonText {
+            color : black;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <input type="hidden" name="idx" th:value="${board.boardIdx}">
-    <div>
-        <label>제목</label>
-        <span th:text="${board.title}"></span>
-    </div>
+        <div class="viewContainer">
+            <div class="viewWrap">
 
-    <div>
-        <label>가수</label>
-        <span th:text="${board.content}"></span>
-
+            <input type="hidden" name="idx" th:value="${board.boardIdx}">
+            <div class="viewTitle">
+               [[${board.title}]]
+            </div>
+                <div class="viewAuthor">
+                    [[${board.author}]]
+                </div>
+            <div class="viewContent">
+                [[${board.content}]]
+            </div>
+                <div class="viewCreatedAt" th:text="${#strings.substring(board.createdAt, 0, 10)}">
+                </div>
+                <div class="viewWatchCount">
+                    [[${board.watchCount}]]조회
+                </div>
+            <div class="viewButtonWrap">
+                <button class="viewButton">
+                    <a class="viewButtonText" href="../list">
+                        목록
+                    </a>
+                </button>
+                <button class="viewButton">
+                    <a class="viewButtonText" th:href="@{../update/{id}(id = ${board.boardIdx})}">
+                        수정
+                    </a>
+                </button>
+                <button class="viewButton">
+                    <a class="viewButtonText" href="javascript:deleteSong();">
+                        삭제
+                    </a>
+                </button>
+            </div>
+            </div>
     </div>
-    <div>
-        <label>작곡</label>
-        <span th:text="${board.author}"></span>
-    </div>
-    <div>
-        <label>작곡</label>
-        <span th:text="${board.author}"></span>
-    </div>
-    <div>
-        <label>조회수</label>
-        <span th:text="${board.watch_count}"></span>
-    </div>
-    <div>
-        <label>생성일</label>
-        <span th:text="${board.created_at}"></span>
-    </div>
-
-    <a th:href="@{../update/{id}(id = ${board.boardIdx})}">
-        <button>
-            수정
-        </button>
-    </a>
-
-    <a href="javascript:deleteSong();">
-        <button>
-            삭제
-        </button>
-    </a>
-</div>
 
 </body>
 </html>

@@ -25,9 +25,9 @@ public class BoardEntity {
     @Column(length = 50)
     private String author;
 
-    private Date created_at;
+    private Date createdAt;
 
-    private  int watch_count;
+    private  int watchCount;
 
     public BoardEntity (String title, String content, String author) {
         this.title = title;
@@ -35,8 +35,8 @@ public class BoardEntity {
         this.author = author;
     }
 
-    public void increaseWatchCount (int watch_count) {
-        this.watch_count = watch_count;
+    public void increaseWatchCount (int watchCount) {
+        this.watchCount = watchCount;
     }
 
 }

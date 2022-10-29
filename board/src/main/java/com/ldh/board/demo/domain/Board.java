@@ -1,6 +1,5 @@
 package com.ldh.board.demo.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +19,6 @@ public class Board {
     private String title;
     private  String content;
     private String author;
-    private Date created_at;
-    private int watch_count;
+    private Date createdAt;
+    private int watchCount;
 }
