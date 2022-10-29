@@ -50,7 +50,6 @@ public class BoardController {
     public ModelAndView viewPage(@PathVariable("idx") Long idx) {
         ModelAndView mv = new ModelAndView("/board/view");
         Board board = boardService.getBoard(idx);
-        boardService.increaseWatchCount(idx);
         mv.addObject("board", board);
         return mv;
     }

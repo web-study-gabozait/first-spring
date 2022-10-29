@@ -84,10 +84,10 @@
     <form class="updateWrap" action="../update.do" mathod="post">
         <input type="hidden" name="idx" th:value="${board.boardIdx}">
         <input class="updateTextInput" type="text" name="title" th:value="${board.title}"/>
-        <textarea class="updateTextarea" name="content" th:value="${board.content}"></textarea>
+        <textarea class="updateTextarea" name="content" th:text="${board.content}" th:value="${board.content}"></textarea>
         <input class="updateTextInput" type="text" name="author" th:value="${board.author}"/>
         <button class="updateButton">
-            등록
+            수정
         </button>
     </form>
 </div>

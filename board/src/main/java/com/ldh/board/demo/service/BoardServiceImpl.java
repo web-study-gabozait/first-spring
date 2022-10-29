@@ -27,10 +27,12 @@ public class BoardServiceImpl implements BoardService {
         Optional<BoardEntity> optional = boardRepository.findById(idx);
 
         if(optional.isPresent()){
+            this.increaseWatchCount(idx);
             BoardEntity entity = optional.get();
             Board board = new Board(entity.getTitle(), entity.getContent(), entity.getAuthor());
             board.setBoardIdx(entity.getBoardIdx());
             board.setCreatedAt(entity.getCreatedAt());
+            board.setWatchCount(entity.getWatchCount());
 
             return board;
         }else {
