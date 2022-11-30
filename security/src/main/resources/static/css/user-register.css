@@ -1,0 +1,15 @@
+.inputWrap label {
+    display: inline-block;
+    width  :100px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.inputWrap div {
+    padding: 10px;
+    width : 500px;
+}
+
+.inputWrap .registerButton {
+    text-align: center;
+}

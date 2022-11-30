@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>스프링</title>
+    <link rel="stylesheet" th:href="@{/css/user-register.css}" >
+</head>
+<body>
+  <h1>회원가입</h1>
+
+<div class="inputWrap">
+    <form>
+        <div>
+            <label>이메일</label>
+            <input type="text" name="email" />
+        </div>
+        <div>
+            <label>비밀번호</label>
+            <input type="text" name="password" />
+        </div>
+        <div>
+            <label>이름</label>
+            <input type="text" name="name" />
+        </div>
+        <div>
+            <label>등급</label>
+            <select name="grade">
+                <option value="1">일반 사용자</option>
+                <option value="9">관리자</option>
+            </select>
+        </div>
+        <div>
+            <label>이름</label>
+            <input type="text" name="name" />
+        </div>
+        <div class="registerButton">
+            <button>가입</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

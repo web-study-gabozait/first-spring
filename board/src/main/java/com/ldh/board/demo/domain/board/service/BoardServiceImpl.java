@@ -1,8 +1,11 @@
-package com.ldh.board.demo.service;
+package com.ldh.board.demo.domain.board.service;
 
-import com.ldh.board.demo.domain.Board;
-import com.ldh.board.demo.entity.BoardEntity;
-import com.ldh.board.demo.repository.BoardRepository;
+import com.ldh.board.demo.domain.board.domain.Board;
+import com.ldh.board.demo.domain.board.entity.BoardEntity;
+import com.ldh.board.demo.domain.board.repository.BoardRepository;
+import com.ldh.board.demo.domain.board.service.BoardService;
+import com.ldh.board.demo.domain.user.domain.User;
+import com.ldh.board.demo.domain.user.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +32,9 @@ public class BoardServiceImpl implements BoardService {
         if(optional.isPresent()){
             this.increaseWatchCount(idx);
             BoardEntity entity = optional.get();
-            Board board = new Board(entity.getTitle(), entity.getContent(), entity.getAuthor());
+            User handleUser = User.build(entity.getAuthor());
+
+            Board board = new Board(entity.getTitle(), entity.getContent(), handleUser);
             board.setBoardIdx(entity.getBoardIdx());
             board.setCreatedAt(entity.getCreatedAt());
             board.setWatchCount(entity.getWatchCount());
@@ -53,7 +58,10 @@ public class BoardServiceImpl implements BoardService {
         List<BoardEntity> boardList = boardRepository.findAllByOrderByCreatedAtDesc();
         List<Board> handleBoardList = new ArrayList<>();
         for(BoardEntity board : boardList) {
-            Board handleBoard = new Board(board.getTitle(), board.getContent(), board.getAuthor());
+
+            User handleUser =  User.build(board.getAuthor());
+
+            Board handleBoard = new Board(board.getTitle(), board.getContent(), handleUser);
             handleBoard.setBoardIdx(board.getBoardIdx());
             handleBoard.setWatchCount(board.getWatchCount());
             handleBoard.setCreatedAt(board.getCreatedAt());
@@ -67,10 +75,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Board postBoard(Board board) {
 
+        UserEntity handleUser = UserEntity.build(board.getAuthor());
+
         BoardEntity boardEntity = new BoardEntity(
                 board.getTitle(),
                 board.getContent(),
-                board.getAuthor());
+                handleUser);
 
         boardEntity.setCreatedAt(new Date());
         boardEntity.setWatchCount(0);
@@ -88,7 +98,7 @@ public class BoardServiceImpl implements BoardService {
             BoardEntity entity = optional.get();
             entity.setTitle(board.getTitle());
             entity.setContent(board.getContent());
-            entity.setAuthor(board.getAuthor());
+            entity.setAuthor(entity.getAuthor());
             boardRepository.save(entity);
         }
 

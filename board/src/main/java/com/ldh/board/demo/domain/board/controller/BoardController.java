@@ -1,13 +1,14 @@
-package com.ldh.board.demo.contoller;
+package com.ldh.board.demo.domain.board.controller;
 
-import com.ldh.board.demo.domain.Board;
-import com.ldh.board.demo.service.BoardService;
+import com.ldh.board.demo.domain.board.domain.Board;
+import com.ldh.board.demo.domain.board.service.BoardService;
+import com.ldh.board.demo.global.security.userdetail.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -29,9 +30,9 @@ public class BoardController {
     public String createBoard(
             @RequestParam("title") String title,
             @RequestParam("content") String content,
-            @RequestParam("author") String author
+            @AuthenticationPrincipal UserDetail userDetail
     ) {
-        Board board = new Board(title, content, author);
+        Board board = new Board(title, content, userDetail.getUser());
         boardService.postBoard(board);
 
         return "redirect:list";
@@ -68,9 +69,9 @@ public class BoardController {
             @RequestParam("idx") Long idx,
             @RequestParam("title") String title,
             @RequestParam("content") String content,
-            @RequestParam("author") String author
+            @AuthenticationPrincipal UserDetail userDetail
     ) {
-        Board board = new Board(title, content, author);
+        Board board = new Board(title, content, userDetail.getUser());
 
         boardService.fetchBoard(idx, board);
 
@@ -84,7 +85,5 @@ public class BoardController {
         boardService.deleteBoard(idx);
         return "redirect:../list";
     }
-
-
 
 }

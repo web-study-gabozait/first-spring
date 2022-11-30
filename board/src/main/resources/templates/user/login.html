@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        body {
+        body, h1 {
             margin : 0px;
         }
 
-        .updateContainer {
+        .loginContainer {
             width : 100%;
             height: 100vh;
             display: flex;
             justify-content: center;
         }
 
-        .updateWrap{
+        .loginWrap {
             width: 490px;
             height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
             padding: 20px;
             padding-top: 40px;
             box-sizing: border-box;
             row-gap: 20px;
         }
 
-        .updateTextInput {
+        .loginTitle {
+            font-size: 40px;
+            color : black;
+            font-weight: bold;
+        }
+
+        .loginTextInput {
             width : 100%;
             height: 64px;
             border-radius: 5px;
@@ -39,30 +44,7 @@
             box-sizing: border-box;
         }
 
-        .updateTextInput:focus{
-            border : 2px solid black;
-        }
-
-        .updateTextarea {
-            width : 100%;
-            height: 400px;
-            font-size: 20px;
-            color : black;
-            padding: 20px;
-            box-sizing: border-box;
-            outline: none;
-            resize: none;
-            border: 0px;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        }
-
-        .updateTextarea:focus {
-            border : 2px solid black;
-        }
-
-        .updateButton {
+        .loginButton {
             width : 105px;
             min-height: 48px;
             border-radius: 5px;
@@ -74,22 +56,37 @@
             justify-content: center;
             background-color: white;
             margin-left: auto;
+            margin-top: 80px;
             cursor: pointer;
+        }
+
+        loginButton:hover {
+            background-color: black;
         }
 
     </style>
 </head>
 <body>
-<div class="updateContainer">
-    <form class="updateWrap" action="../update.do" mathod="post">
-        <input type="hidden" name="idx" th:value="${board.boardIdx}">
-        <input class="updateTextInput" type="text" name="title" th:value="${board.title}"/>
-        <textarea class="updateTextarea" name="content" th:text="${board.content}" th:value="${board.content}"></textarea>
-        <button class="updateButton">
-            수정
-        </button>
-    </form>
-</div>
+    <div class="loginContainer">
+        <form class="loginWrap" action="/user/login" method="post">
+            <h1 class="loginTitle">
+                로그인
+            </h1>
+            <input class="loginTextInput"
+                placeholder="아이디를 입력해주세요"
+                   name="userId"
+                   type="text"
+            />
+            <input class="loginTextInput"
+                   placeholder="비밀번호를 입력해주세요"
+                   name="password"
+                   type="password"
+            />
+            <a href="./register">회원가입</a>
+            <span th:text="${param.exception}"></span>
+            <button class="loginButton">로그인</button>
 
+        </form>
+    </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
-package com.ldh.board.demo.domain;
+package com.ldh.board.demo.domain.board.domain;
 
+import com.ldh.board.demo.domain.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import java.util.Date;
 @Setter
 public class Board {
 
-    public Board(String title, String content, String author) {
+    public Board(String title, String content, User author) {
         this.title = title;
         this.content = content;
         this.author = author;
@@ -18,7 +19,7 @@ public class Board {
     private  Long boardIdx;
     private String title;
     private  String content;
-    private String author;
+    private User author;
     private Date createdAt;
     private int watchCount;
 }

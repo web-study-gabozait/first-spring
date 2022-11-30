@@ -1,5 +1,7 @@
-package com.ldh.board.demo.entity;
+package com.ldh.board.demo.domain.board.entity;
 
+import com.ldh.board.demo.domain.user.domain.User;
+import com.ldh.board.demo.domain.user.entity.UserEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,14 +24,15 @@ public class BoardEntity {
     private String title;
     @Column(length = 1000)
     private  String content;
-    @Column(length = 50)
-    private String author;
+    @JoinColumn(name = "author")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private UserEntity author;
 
     private Date createdAt;
 
-    private  int watchCount;
+    private int watchCount;
 
-    public BoardEntity (String title, String content, String author) {
+    public BoardEntity (String title, String content, UserEntity author) {
         this.title = title;
         this.content = content;
         this.author = author;
